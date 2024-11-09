@@ -1,7 +1,9 @@
 {
   "cSpell.words": [
+    "EPSG",
     "mapbox",
     "maplibregl",
+    "nestjs",
     "pickable",
     "Scatterplot",
     "SRID",

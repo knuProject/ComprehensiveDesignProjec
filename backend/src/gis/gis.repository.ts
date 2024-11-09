@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
-import { GisInfos } from './entities/gis.entity';
+import { CarData } from './entities/gis.entity';
 
 @Injectable()
-export class GisRepository extends Repository<GisInfos> {}
+export class GisRepository extends Repository<CarData> {}

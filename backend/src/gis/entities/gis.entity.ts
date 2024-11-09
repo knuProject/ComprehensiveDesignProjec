@@ -1,16 +1,32 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity()
-export class GisInfos extends BaseEntity {
+@Entity('car_data') // 테이블명은 'car_data'
+export class CarData {
   @PrimaryGeneratedColumn()
   id: number;
 
-  // PostGIS에서 좌표를 저장할 때 geometry 타입 사용
-  //    - geometry: PostGIS의 공간 데이터 타입입니다. spatialFeatureType: 'Point'로 단일 좌표(위도, 경도)를 나타냅니다.
-  //    - SRID 4326: WGS 84 좌표계(지구 표면의 GPS 좌표)를 나타냅니다
-  @Column({ type: 'geometry', spatialFeatureType: 'Point', srid: 4326 })
-  coordinates: string;
+  @Column({ type: 'varchar', length: 50 })
+  car_registration_number: string;
 
-  @Column()
-  timestamp: number;
+  @Column({ type: 'varchar' })
+  boarding_time: string;
+
+  @Column({ type: 'varchar' })
+  getting_off_time: string;
+
+  @Column({ type: 'varchar' })
+  time: string;
+
+  @Column({ type: 'float8' })
+  gpsX: number;
+
+  @Column({ type: 'float8' })
+  gpsY: number;
+
+  @Column({ type: 'float8' })
+  speed: number;
+
+  // geom 컬럼 추가: PostGIS에서 사용하는 geometry(Point, 4326) 형식
+  @Column({ type: 'geometry', spatialFeatureType: 'Point', srid: 4326 })
+  geom: string;
 }
