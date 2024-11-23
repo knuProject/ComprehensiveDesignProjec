@@ -1,6 +1,7 @@
+import { TrackPointData } from 'src/trackPoint/entities/trackPoint.entity';
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 
-@Entity('tracks') // 테이블명은 'car_data'
+@Entity('tracks') // 테이블명은 'tracks'
 export class TrackData {
   @Column({ type: 'integer', nullable: false })
   @PrimaryGeneratedColumn()

@@ -1,28 +1,46 @@
 import { Controller, Get, Query } from '@nestjs/common';
 import { TrackPointService } from './trackPoint.service';
+import { TTrackData } from './types/TTrackData';
 
-class GetInfoByCarNumberDto {
-  carRegNumber: string;
-  boardingTime: string;
-  getOffTime: string;
-}
-
-class GetInfoByTimeRangeDto {
+class getPointByLngLatMeterDto {
   startTime: string;
   endTime: string;
-  polygon: string;
+  lng: number;
+  lat: number;
+  meter: number;
+}
+class getPointByTime {
+  startTime: string;
+  endTime: string;
 }
 
-@Controller('gis')
+@Controller('trackPoint')
 export class TrackPointController {
   constructor(
-    private readonly TrackPointService: TrackPointService, //
+    private readonly trackPointService: TrackPointService, //
   ) {}
 
-  // @Get('point')
-  // getCoordinateByPoint(): Promise<{  }[]> {
-  //   return
-  // }
+  @Get('All')
+  getPointByLngLatMeter(
+    @Query() query: getPointByLngLatMeterDto,
+  ): Promise<TTrackData[]> {
+    const { startTime, endTime, lng, lat, meter } = query;
+
+    return this.trackPointService.getPoint({
+      startTime,
+      endTime,
+      lng,
+      lat,
+      meter,
+    });
+  }
+
+  @Get('time')
+  getPointByTime(@Query() query: getPointByTime): Promise<string[]> {
+    const { startTime, endTime } = query;
+
+    return this.trackPointService.getPointByTime({ startTime, endTime });
+  }
 
   // // 자동차 등록번호로 좌표 정보를 가져오는 메서드
   // @ApiOperation({ summary: 'Get GIS coordinates by CarRegNumber' })

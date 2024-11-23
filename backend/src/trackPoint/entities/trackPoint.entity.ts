@@ -1,6 +1,13 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { TrackData } from 'src/track/entities/tracks.entity';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  JoinColumn,
+} from 'typeorm';
 
-@Entity('track_points') // 테이블명은 'car_data'
+@Entity('track_points') // 테이블명은 'track_points'
 export class TrackPointData {
   @Column({ type: 'integer', nullable: false })
   @PrimaryGeneratedColumn() // 기본
